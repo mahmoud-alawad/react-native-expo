@@ -7,7 +7,9 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "lint": "eslint \"*.js\" --fix",
+    "format": "prettier --write \"*.js\""
   },
   "dependencies": {
     "@expo/vector-icons": "13.0.0",
@@ -21,9 +23,14 @@
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
     "react-native-web": "~0.18.9"
-    },
+  },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier" : "2.8.1"
   },
   "private": true
 }

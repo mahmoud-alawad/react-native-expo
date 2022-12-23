@@ -71,7 +71,6 @@ export default ({ route }) => {
             <Category item={item} />
           )}
           keyExtractor={(item, index) => index.toString()}
-
         />
       </View>
 
