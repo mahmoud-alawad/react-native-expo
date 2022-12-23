@@ -1,23 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './screens/Home';
-import NavComponant from './navigations';
-export default function App() {
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { BottomTabScreen } from './navigations';
+import { Ionicons } from '@expo/vector-icons';
+import Profile from './screens/Profile';
+
+const Stack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
   return (
-    <View style={styles.container}>
-      <Home/>
-      <NavComponant/>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+     <Tab.Navigator
+     screenOptions={({ route }) => ({
+       tabBarIcon: ({ focused, color, size }) => {
+         let iconName;
+
+         if (route.name === 'Home') {
+           iconName = focused
+             ? 'ios-information-circle'
+             : 'ios-information-circle-outline';
+         } else if (route.name === 'Settings') {
+           iconName = focused ? 'ios-list' : 'ios-list-outline';
+         }
+
+         // You can return any component that you like here!
+         return <Ionicons name={iconName} size={size} color={color} />;
+       },
+       tabBarActiveTintColor: 'tomato',
+       tabBarInactiveTintColor: 'gray',
+     })}
+   >
+     <Tab.Screen name="Home" component={Home} />
+     <Tab.Screen name="Settings" component={Profile} />
+   </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function App() {
+  return (
+    <NavigationContainer>
+     <BottomTabScreen/>
+    </NavigationContainer>
+  );
+}
+
+export default App;
